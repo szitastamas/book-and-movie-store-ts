@@ -1,4 +1,9 @@
-import { IEntertainmentSource, IFormSubmit } from '../architecture/IEntertainmentSource';
+import {
+    IBookInitialization,
+    IEntertainmentSource,
+    IFormSubmit,
+    IMovieInitialization
+} from '../architecture/IEntertainmentSource';
 import { Book } from './Book';
 import { Movie } from './Movie';
 import { UIProcessor } from './UIProcessor';
@@ -17,8 +22,8 @@ export default class EntertainmentStore {
     this.sources.unshift(item);
 
     const listItem = this.uiProcessor.createSourceItem(item);
-    listItem.addEventListener("click", () => this.remove(item.id));
-    
+    listItem.addEventListener('click', () => this.remove(item.id));
+
     this.uiProcessor.itemList.prepend(listItem);
   }
 
@@ -39,7 +44,7 @@ export default class EntertainmentStore {
     const submitData = this.uiProcessor.inputElements.reduce(
       (acc, item: HTMLInputElement) => {
         if (item.type === 'radio' && !item.checked) return acc;
-        
+
         acc[item.name] = item.value;
         return { ...acc };
       },
@@ -47,23 +52,20 @@ export default class EntertainmentStore {
     ) as IFormSubmit;
 
     let item: IEntertainmentSource;
+    
+    let initObject = {
+      title: submitData.title,
+      plot: submitData.plot,
+      category: submitData.category,
+      length: submitData.length,
+    };
 
     if (submitData.type === 'book') {
-      item = new Book({
-        title: submitData.title,
-        plot: submitData.plot,
-        category: submitData.category,
-        author: submitData.owner,
-        length: submitData.length,
-      });
+      initObject['author'] = submitData.owner;
+      item = new Book(initObject as IBookInitialization);
     } else {
-      item = new Movie({
-        title: submitData.title,
-        plot: submitData.plot,
-        category: submitData.category,
-        director: submitData.owner,
-        length: submitData.length,
-      });
+      initObject['director'] = submitData.owner;
+      item = new Movie(initObject as IMovieInitialization);
     }
 
     this.addSource(item);

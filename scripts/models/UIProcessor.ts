@@ -25,7 +25,7 @@ export class UIProcessor {
   }
 
   public removeListItem(id: string) {
-      const element = this.itemList.querySelector(`[data-id=${id}]`)
+      const element = this.itemList.querySelector(`[data-id="${id}"]`)
       if(element) element.remove();
   }
   private attachReactionToRadioBtns() {
