@@ -16,6 +16,8 @@ export class UIProcessor {
   }
 
   public addItemToSourceList(item: IEntertainmentSource) {
+      console.log(item)
+      console.log(item.suitableForKids)
     const element = document.createElement('li');
     element.className = 'entertainment-list-item';
     element.dataset.id = item.id;

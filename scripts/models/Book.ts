@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import { Categories } from "../architecture/Categories";
 import { IBookInitialization, IEntertainmentSource } from "../architecture/IEntertainmentSource";
 
@@ -9,6 +10,7 @@ export class Book implements IEntertainmentSource {
     category: Categories;
 
     constructor(init: IBookInitialization) {
+        this.id = v4();
         this.title = init.title;
         this.plot = init.plot ?? '';
         this.length = init.length ?? 0;
@@ -16,7 +18,7 @@ export class Book implements IEntertainmentSource {
     }
 
     get suitableForKids() {
-        return this.category === Categories.Horror || this.category === Categories.Thriller;
+        return this.category !== Categories.Horror && this.category !== Categories.Thriller;
     };
 
 }
