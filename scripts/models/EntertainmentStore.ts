@@ -10,13 +10,16 @@ export default class EntertainmentStore {
 
   constructor() {
     this.uiProcessor = new UIProcessor();
-
     this.uiProcessor.form.addEventListener('submit', (e) => this.processFormInput(e));
   }
 
   addSource(item: IEntertainmentSource) {
     this.sources.unshift(item);
-    this.uiProcessor.addItemToSourceList(item);
+
+    const listItem = this.uiProcessor.createSourceItem(item);
+    listItem.addEventListener("click", () => this.remove(item.id));
+    
+    this.uiProcessor.itemList.prepend(listItem);
   }
 
   getById(id: string): IEntertainmentSource | undefined {
@@ -28,6 +31,7 @@ export default class EntertainmentStore {
     if (index === -1) return;
 
     this.sources.splice(index, 1);
+    this.uiProcessor.removeListItem(id);
   }
   private processFormInput(event) {
     event.preventDefault();
@@ -43,7 +47,7 @@ export default class EntertainmentStore {
     ) as IFormSubmit;
 
     let item: IEntertainmentSource;
-    console.log(submitData);
+
     if (submitData.type === 'book') {
       item = new Book({
         title: submitData.title,

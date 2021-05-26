@@ -15,16 +15,18 @@ export class UIProcessor {
     this.attachReactionToRadioBtns();
   }
 
-  public addItemToSourceList(item: IEntertainmentSource) {
-      console.log(item)
-      console.log(item.suitableForKids)
+  public createSourceItem(item: IEntertainmentSource) {
     const element = document.createElement('li');
     element.className = 'entertainment-list-item';
     element.dataset.id = item.id;
     element.textContent = item.title;
     element.style.color = item.suitableForKids ? 'black' : 'red';
+    return element;
+  }
 
-    this.itemList.prepend(element);
+  public removeListItem(id: string) {
+      const element = this.itemList.querySelector(`[data-id=${id}]`)
+      if(element) element.remove();
   }
   private attachReactionToRadioBtns() {
     this.inputElements
