@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "module": "CommonJS",
+      "lib": ["es6", "dom"],
+      "rootDir": "scripts",
+      "target": "ES6"
+    },
+  }

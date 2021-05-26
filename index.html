@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entertainment Source</title>
+    <script src="./build/main-bundle.js" defer></script>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Entertainment Source</h1>
+
+      <div id="page-content">
+        <div id="form-container">
+          <form id="create-item-form">
+            <div class="form-group">
+              <p for="type">Entertainment Type</p>
+              <label for="book-type">Book</label>
+              <input class="form-input" type="radio" name="type" id="book-type" value="book" checked />
+              <label for="movie-type">Movie</label>
+              <input
+                class="form-input"
+                type="radio"
+                name="type"
+                id="movie-type"
+                value="movie"
+              />
+            </div>
+            <div class="form-group">
+              <label for="title">Title</label
+              ><input class="form-input" type="text" name="title" id="title" />
+            </div>
+            <div class="form-group">
+              <label for="plot">Plot Summary</label
+              ><input class="form-input" type="text" name="plot" id="plot" />
+            </div>
+            <div class="form-group">
+              <label for="length">Length</label
+              ><input class="form-input" type="number" name="length" id="length" />
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label
+              ><select class="form-input" id="category"></select>
+            </div>
+            <div class="form-group">
+              <label id="owner-title" for="owner">Author</label
+              ><input class="form-input" type="text" name="owner" id="owner" />
+            </div>
+            <button type="submit">Save</button>
+          </form>
+        </div>
+        <div id="entertainment-list-container">
+          <ul id="entertainment-list"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
