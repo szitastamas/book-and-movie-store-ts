@@ -34,14 +34,16 @@ export default class EntertainmentStore {
 
     const submitData = this.uiProcessor.inputElements.reduce(
       (acc, item: HTMLInputElement) => {
-        acc[item.id] = item.value;
+        if (item.type === 'radio' && !item.checked) return acc;
+        
+        acc[item.name] = item.value;
         return { ...acc };
       },
       {}
     ) as IFormSubmit;
 
     let item: IEntertainmentSource;
-
+    console.log(submitData);
     if (submitData.type === 'book') {
       item = new Book({
         title: submitData.title,
