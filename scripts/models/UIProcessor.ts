@@ -17,7 +17,7 @@ export class UIProcessor {
     this.attachReactionToRadioBtns();
   }
 
-  public createSourceItem(item: IEntertainmentSource) {
+  public createSourceItem(item: IEntertainmentSource): HTMLLIElement {
     const element = document.createElement('li');
     element.className = 'entertainment-list-item';
     element.dataset.id = item.id;

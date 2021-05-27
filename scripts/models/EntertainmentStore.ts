@@ -38,9 +38,9 @@ export default class EntertainmentStore {
     this.sources.splice(index, 1);
     this.uiProcessor.removeListItem(id);
   }
-  private processFormInput(event) {
+  private processFormInput(event: Event) {
     event.preventDefault();
-
+    
     const submitData = this.uiProcessor.inputElements.reduce(
       (acc, item: HTMLInputElement) => {
         if (item.type === 'radio' && !item.checked) return acc;
