@@ -9,6 +9,7 @@ export class Movie implements IEntertainmentSource {
     length: number;
     category: Categories;
     director: string;
+    
     constructor(init: IMovieInitialization) {
         this.id = v4();
         this.title = init.title;

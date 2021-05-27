@@ -1,6 +1,8 @@
 import { Categories } from '../architecture/Categories';
 import { IEntertainmentSource } from '../architecture/IEntertainmentSource';
 
+type RadioSourceType = 'book' | 'movie'
+
 export class UIProcessor {
   ownerTitle: HTMLLabelElement;
   form: HTMLFormElement;
@@ -24,6 +26,10 @@ export class UIProcessor {
     return element;
   }
 
+  public addSourceItemToList(element: HTMLLIElement) {
+    this.itemList.append(element);
+  }
+
   public removeListItem(id: string) {
       const element = this.itemList.querySelector(`[data-id="${id}"]`)
       if(element) element.remove();
@@ -33,12 +39,12 @@ export class UIProcessor {
       .filter((elem) => elem.name === 'type')
       .forEach((elem) => {
         elem.addEventListener('change', () =>
-          this.updateOwnerTitle(elem.value as 'book' | 'movie')
+          this.updateOwnerTitle(elem.value as RadioSourceType)
         );
       });
   }
 
-  private updateOwnerTitle(value: 'book' | 'movie') {
+  private updateOwnerTitle(value: RadioSourceType) {
     if (value === 'book') this.ownerTitle.textContent = 'Author';
     else this.ownerTitle.textContent = 'Director';
   }

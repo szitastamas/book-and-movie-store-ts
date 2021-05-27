@@ -1,8 +1,8 @@
 import {
-    IBookInitialization,
-    IEntertainmentSource,
-    IFormSubmit,
-    IMovieInitialization
+  IBookInitialization,
+  IEntertainmentSource,
+  IFormSubmit,
+  IMovieInitialization
 } from '../architecture/IEntertainmentSource';
 import { Book } from './Book';
 import { Movie } from './Movie';
@@ -24,7 +24,7 @@ export default class EntertainmentStore {
     const listItem = this.uiProcessor.createSourceItem(item);
     listItem.addEventListener('click', () => this.remove(item.id));
 
-    this.uiProcessor.itemList.prepend(listItem);
+    this.uiProcessor.addSourceItemToList(listItem);
   }
 
   getById(id: string): IEntertainmentSource | undefined {
@@ -46,7 +46,7 @@ export default class EntertainmentStore {
         if (item.type === 'radio' && !item.checked) return acc;
 
         acc[item.name] = item.value;
-        return { ...acc };
+        return acc;
       },
       {}
     ) as IFormSubmit;
@@ -67,7 +67,7 @@ export default class EntertainmentStore {
       initObject['director'] = submitData.owner;
       item = new Movie(initObject as IMovieInitialization);
     }
-
+    
     this.addSource(item);
   }
 }
