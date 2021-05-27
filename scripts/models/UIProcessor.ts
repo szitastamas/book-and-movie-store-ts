@@ -51,12 +51,11 @@ export class UIProcessor {
 
   private createOptionsForCategorySelection() {
     const select = this.inputElements.find((elem) => elem.id === 'category');
-    const values = Object.keys(Categories).map((item) => item);
 
-    values.forEach((val) => {
+    Object.keys(Categories).forEach((key) => {
       const option = document.createElement('option');
-      option.value = val;
-      option.textContent = val;
+      option.value = key;
+      option.textContent = key;
 
       select.appendChild(option);
     });
