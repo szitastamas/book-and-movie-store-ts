@@ -6,4 +6,5 @@ export enum Categories {
     Documentary = 'Documentary',
     Thriller = 'Thriller',
     History = 'History',
+    Fantasy = 'Fantasy',
 }

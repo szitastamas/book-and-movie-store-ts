@@ -8,12 +8,14 @@ export class Movie implements IEntertainmentSource {
     plot: string;
     length: number;
     category: Categories;
+    director: string;
     constructor(init: IMovieInitialization) {
         this.id = v4();
         this.title = init.title;
         this.plot = init.plot ?? '';
         this.length = init.length ?? 0;
         this.category = init.category;
+        this.director = init.director;
     }
     get suitableForKids() {
         return this.category !== Categories.Horror && this.category !== Categories.Thriller;

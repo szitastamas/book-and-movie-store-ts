@@ -8,6 +8,7 @@ export class Book implements IEntertainmentSource {
     plot: string;
     length: number;
     category: Categories;
+    author: string;
 
     constructor(init: IBookInitialization) {
         this.id = v4();
@@ -15,6 +16,7 @@ export class Book implements IEntertainmentSource {
         this.plot = init.plot ?? '';
         this.length = init.length ?? 0;
         this.category = init.category;
+        this.author = init.author;
     }
 
     get suitableForKids() {

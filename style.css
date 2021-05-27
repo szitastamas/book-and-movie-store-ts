@@ -13,9 +13,8 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
-    flex-direction: column;
 }
 
 #form-container {
@@ -27,6 +26,7 @@ body {
 
 .form-group {
     width: 100%;
+    margin: 10px 0;
 }
 
 input:not([type="radio"]), select {
@@ -54,7 +54,6 @@ input:not([type="radio"]), select {
     width: 550px;
     padding: 2rem;
     background: #444;
-    margin-top: 1rem;
 }
 
 .entertainment-list-item {
@@ -64,6 +63,7 @@ input:not([type="radio"]), select {
     border: 2px solid #999;
     margin: 4px 0;
     padding: 1rem;
+    color: whitesmoke;
 }
 
 .entertainment-list-item[data-suitable="false"] {
