@@ -20,7 +20,7 @@ export class UIProcessor {
     element.className = 'entertainment-list-item';
     element.dataset.id = item.id;
     element.textContent = item.title;
-    element.style.color = item.suitableForKids ? 'black' : 'red';
+    element.dataset.suitable = `${item.suitableForKids}`;
     return element;
   }
 
