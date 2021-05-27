@@ -1,16 +1,18 @@
 import { Categories } from '../architecture/Categories';
 import { IEntertainmentSource } from '../architecture/IEntertainmentSource';
 
-type RadioSourceType = 'book' | 'movie'
+type RadioSourceType = 'book' | 'movie';
 
 export class UIProcessor {
-  ownerTitle: HTMLLabelElement;
   form: HTMLFormElement;
-  inputElements: HTMLInputElement[];
+  ownerTitle: HTMLLabelElement;
   itemList: HTMLUListElement;
+  inputElements: HTMLInputElement[];
+  categorySelector: HTMLSelectElement;
   constructor() {
-    this.ownerTitle = document.getElementById('owner-title') as HTMLLabelElement;
     this.form = document.getElementById('create-item-form') as HTMLFormElement;
+    this.ownerTitle = document.getElementById('owner-title') as HTMLLabelElement;
+    this.categorySelector = document.getElementById('category') as HTMLSelectElement;
     this.itemList = document.getElementById('entertainment-list') as HTMLUListElement;
     this.inputElements = Array.from(document.querySelectorAll('.form-input'));
     this.createOptionsForCategorySelection();
@@ -31,8 +33,8 @@ export class UIProcessor {
   }
 
   public removeListItem(id: string) {
-      const element = this.itemList.querySelector(`[data-id="${id}"]`)
-      if(element) element.remove();
+    const element = this.itemList.querySelector(`[data-id="${id}"]`);
+    if (element) element.remove();
   }
   private attachReactionToRadioBtns() {
     this.inputElements
@@ -50,14 +52,12 @@ export class UIProcessor {
   }
 
   private createOptionsForCategorySelection() {
-    const select = this.inputElements.find((elem) => elem.id === 'category');
-
     Object.keys(Categories).forEach((key) => {
       const option = document.createElement('option');
       option.value = key;
       option.textContent = key;
 
-      select.appendChild(option);
+      this.categorySelector.appendChild(option);
     });
   }
 }
